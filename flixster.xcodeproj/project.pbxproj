@@ -8,24 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		5D0BC8E120E409F3003EDE70 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0BC8E020E409F3003EDE70 /* AppDelegate.m */; };
-		5D0BC8E420E409F3003EDE70 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0BC8E320E409F3003EDE70 /* ViewController.m */; };
 		5D0BC8E720E409F3003EDE70 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D0BC8E520E409F3003EDE70 /* Main.storyboard */; };
 		5D0BC8E920E409F4003EDE70 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D0BC8E820E409F4003EDE70 /* Assets.xcassets */; };
 		5D0BC8EC20E409F4003EDE70 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D0BC8EA20E409F4003EDE70 /* LaunchScreen.storyboard */; };
 		5D0BC8EF20E409F4003EDE70 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0BC8EE20E409F4003EDE70 /* main.m */; };
+		5D7B379420E411A60041FCE6 /* MoviesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7B379320E411A60041FCE6 /* MoviesViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5D0BC8DC20E409F3003EDE70 /* flixster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = flixster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D0BC8DF20E409F3003EDE70 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5D0BC8E020E409F3003EDE70 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		5D0BC8E220E409F3003EDE70 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		5D0BC8E320E409F3003EDE70 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		5D0BC8E620E409F3003EDE70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5D0BC8E820E409F4003EDE70 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5D0BC8EB20E409F4003EDE70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5D0BC8ED20E409F4003EDE70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5D0BC8EE20E409F4003EDE70 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		5D7B379220E411A60041FCE6 /* MoviesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MoviesViewController.h; sourceTree = "<group>"; };
+		5D7B379320E411A60041FCE6 /* MoviesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MoviesViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,13 +60,13 @@
 			children = (
 				5D0BC8DF20E409F3003EDE70 /* AppDelegate.h */,
 				5D0BC8E020E409F3003EDE70 /* AppDelegate.m */,
-				5D0BC8E220E409F3003EDE70 /* ViewController.h */,
-				5D0BC8E320E409F3003EDE70 /* ViewController.m */,
 				5D0BC8E520E409F3003EDE70 /* Main.storyboard */,
 				5D0BC8E820E409F4003EDE70 /* Assets.xcassets */,
 				5D0BC8EA20E409F4003EDE70 /* LaunchScreen.storyboard */,
 				5D0BC8ED20E409F4003EDE70 /* Info.plist */,
 				5D0BC8EE20E409F4003EDE70 /* main.m */,
+				5D7B379220E411A60041FCE6 /* MoviesViewController.h */,
+				5D7B379320E411A60041FCE6 /* MoviesViewController.m */,
 			);
 			path = flixster;
 			sourceTree = "<group>";
@@ -141,9 +141,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5D0BC8E420E409F3003EDE70 /* ViewController.m in Sources */,
 				5D0BC8EF20E409F4003EDE70 /* main.m in Sources */,
 				5D0BC8E120E409F3003EDE70 /* AppDelegate.m in Sources */,
+				5D7B379420E411A60041FCE6 /* MoviesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
