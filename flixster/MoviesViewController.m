@@ -44,6 +44,26 @@
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (error != nil) {
             NSLog(@"%@", [error localizedDescription]);
+            
+            // create alert element
+            UIAlertController *alert = [UIAlertController
+                                        alertControllerWithTitle:@"Error"
+                                        message:[error localizedDescription]
+                                        preferredStyle:(UIAlertControllerStyleAlert)];
+            // create OK action action
+            UIAlertAction *okAction = [UIAlertAction
+                                       actionWithTitle:@"Try Again"
+                                       style:UIAlertActionStyleDefault
+                                       handler:^(UIAlertAction * _Nonnull action) {
+                                           [self fetchMovies];
+                                       }];
+
+            // add the OK action to the alert controller
+            [alert addAction:okAction];
+            
+            // show alert
+            [self presentViewController:alert animated:YES completion:^{
+            }];
         }
         else {
             NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
