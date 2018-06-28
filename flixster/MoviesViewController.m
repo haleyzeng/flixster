@@ -45,15 +45,11 @@
         else {
             NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
             
-            
             // TODO: Get the array of movies
             // TODO: Store the movies in a property to use elsewhere
             // TODO: Reload your table view data
             
             self.movies = dataDictionary[@"results"];
-            for (NSDictionary *movie in self.movies) {
-                NSLog(@"%@", movie[@"title"]);
-            }
             
             [self.tableView reloadData];
         }
@@ -68,6 +64,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     MovieCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell"];
     
     NSDictionary *movie = self.movies[indexPath.row];
@@ -81,7 +78,6 @@
     NSURL *posterURL = [NSURL URLWithString:fullURLString];
     cell.posterImageView.image = nil;
     [cell.posterImageView setImageWithURL:posterURL];
-  //  cell.textLabel.text = movie[@"title"];
     return cell;
 }
 
@@ -103,7 +99,6 @@
     
     DetailViewController *detailViewController = [segue destinationViewController];
     detailViewController.movie = movie;
-    
 }
 
 

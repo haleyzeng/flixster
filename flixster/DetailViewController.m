@@ -14,8 +14,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *detailBackdropImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *detailPosterImageView;
 @property (weak, nonatomic) IBOutlet UILabel *detailTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *detailDateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
-
 @end
 
 @implementation DetailViewController
@@ -38,6 +38,8 @@
     [self.detailPosterImageView setImageWithURL:posterURL];
     
     self.detailTitleLabel.text = self.movie[@"title"];
+    self.detailDateLabel.text = self.movie[@"release_date"];
+    
     self.detailDescriptionLabel.text = self.movie[@"overview"];
     
     [self.detailTitleLabel sizeToFit];
