@@ -37,9 +37,14 @@
     NSURL *posterURL = [NSURL URLWithString:fullUPosterRLString];
     [self.detailPosterImageView setImageWithURL:posterURL];
     
+    // Create a white border with defined width
+    self.detailPosterImageView.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.detailPosterImageView.layer.borderWidth = 1;
+    // Set image corner radius
+  //  self.detailPosterImageView.layer.cornerRadius = 5.0;
+    
     self.detailTitleLabel.text = self.movie[@"title"];
     self.detailDateLabel.text = self.movie[@"release_date"];
-    
     self.detailDescriptionLabel.text = self.movie[@"overview"];
     
     [self.detailTitleLabel sizeToFit];
