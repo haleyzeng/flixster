@@ -10,6 +10,7 @@
 
 @interface WebViewController ()
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingActivityIndicator;
 @end
 
 @implementation WebViewController
@@ -17,7 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-
+    [self.loadingActivityIndicator startAnimating];
     [self fetchTrailer];
 }
 
@@ -27,6 +28,11 @@
 }
 
 - (IBAction)onTap:(id)sender {
+    [self close];
+}
+
+
+- (void)close {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -42,6 +48,38 @@
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (error != nil) {
             NSLog(@"%@", [error localizedDescription]);
+            
+            // create alert element
+            UIAlertController *alert = [UIAlertController
+                                        alertControllerWithTitle:@"Error"
+                                        message:[error localizedDescription]
+                                        preferredStyle:(UIAlertControllerStyleAlert)];
+
+            // create try again action button
+            UIAlertAction *tryAgainAction = [UIAlertAction
+                                       actionWithTitle:@"Try Again"
+                                       style:UIAlertActionStyleDefault
+                                       handler:^(UIAlertAction * _Nonnull action) {
+                                           [self fetchTrailer];
+                                       }];
+            // create Go Back action button
+            UIAlertAction *goBackAlert = [UIAlertAction
+                                          actionWithTitle:@"Go Back"
+                                          style:UIAlertActionStyleCancel
+                                          handler:^(UIAlertAction * _Nonnull action) {
+                                              [self close];
+                                          }];
+            
+            // add the Try Again action to the alert controller
+            [alert addAction:tryAgainAction];
+            
+            // add the Go Back action to the alert controller
+            [alert addAction:goBackAlert];
+
+            // show alert
+            [self presentViewController:alert animated:YES completion:^{
+            }];
+            
         }
         else {
             
@@ -62,10 +100,11 @@
 
             // Load Request into WebView.
             [self.webView loadRequest:request];
-
+            [self.loadingActivityIndicator stopAnimating];
            NSLog(@"loaded");
         }
     }];
+    
     [task resume];
     
 }

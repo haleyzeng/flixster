@@ -172,11 +172,16 @@
                                     <action selector="onTap:" destination="PW4-RU-ePF" eventType="touchUpInside" id="Vja-0i-c8y"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" id="7jB-nx-tMm">
+                                <rect key="frame" x="177" y="323" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <navigationItem key="navigationItem" id="7r4-oG-y5l"/>
                     <connections>
+                        <outlet property="loadingActivityIndicator" destination="7jB-nx-tMm" id="QUL-Wh-rI0"/>
                         <outlet property="webView" destination="PBx-gn-GX2" id="v9q-jA-p3b"/>
                     </connections>
                 </viewController>

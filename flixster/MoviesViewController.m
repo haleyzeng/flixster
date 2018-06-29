@@ -75,7 +75,7 @@
             self.movies = dataDictionary[@"results"];
             
             [self.tableView reloadData];
-        [self.fetchingActivityIndicator stopAnimating];
+            [self.fetchingActivityIndicator stopAnimating];
         }
         [self.refreshControl endRefreshing];
     }];
