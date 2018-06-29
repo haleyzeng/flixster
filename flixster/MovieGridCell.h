@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface MovieGridCell : UICollectionViewCell
-@property (weak, nonatomic) IBOutlet UIImageView *posterGridView;
+@property (weak, nonatomic) IBOutlet UIImageView *posterImageView;
 
 @end

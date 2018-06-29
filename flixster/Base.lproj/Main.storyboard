@@ -103,7 +103,7 @@
                                         <rect key="frame" x="8" y="364" width="359" height="222"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <string key="text">description description description description description description description description description description description description description description description description description description description description description description description description description description description description description description description description description description description description description description description description </string>
-                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="14"/>
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -139,7 +139,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jYd-M3-2VE" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="dLW-UE-mmY">
                     <connections>
-                        <action selector="onTap:" destination="1g9-xU-Sx8" id="KjH-o5-tf9"/>
                         <segue destination="PW4-RU-ePF" kind="modal" id="DKh-t1-g45"/>
                     </connections>
                 </tapGestureRecognizer>
@@ -257,7 +256,7 @@
                                             </subviews>
                                         </view>
                                         <connections>
-                                            <outlet property="posterGridView" destination="v2d-R3-8zR" id="XTb-Zf-8R5"/>
+                                            <outlet property="posterImageView" destination="v2d-R3-8zR" id="oqw-ma-gFe"/>
                                             <segue destination="1g9-xU-Sx8" kind="push" id="FdC-Xi-Wbf"/>
                                         </connections>
                                     </collectionViewCell>

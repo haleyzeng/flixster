@@ -106,7 +106,7 @@
     [cell.posterImageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest *imageRequest, NSHTTPURLResponse *imageResponse, UIImage *image) {
         // imageResponse will be nil if the image is cached
         if (imageResponse) {
-            NSLog(@"Image was NOT cached, fade in image");
+            NSLog(@"Table Poster Image was NOT cached, fade in image");
             weakSelf.posterImageView.alpha = 0.0;
             weakSelf.posterImageView.image = image;
             
@@ -116,7 +116,7 @@
             }];
         }
         else {
-            NSLog(@"Image was cached so just update the image");
+            NSLog(@"Table Poster Image was cached so just update the image");
             weakSelf.posterImageView.image = image;
         }
     } failure:^(NSURLRequest *request, NSHTTPURLResponse * response, NSError *error) {
