@@ -91,22 +91,47 @@
             // convert json data to dictionary obj
             NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
             
-            
             NSArray *videos = dataDictionary[@"results"];
             
-            // build url string
-            NSString *basetrailerURLString = @"https://www.youtube.com/embed/";
-            NSString *fullTrailerURLString = [basetrailerURLString stringByAppendingString:videos[0][@"key"]];
+            // if there are videos
+            if (videos.count != 0) {
+                // build url string
+                NSString *basetrailerURLString = @"https://www.youtube.com/embed/";
             
-            // Convert the url String to a NSURL object.
-            NSURL *trailerURL = [NSURL URLWithString:fullTrailerURLString];
-
-            // Place the URL in a URL Request.
-            NSURLRequest *request = [NSURLRequest requestWithURL:trailerURL cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
-
-            // Load Request into WebView.
-            [self.webView loadRequest:request];
+                NSString *fullTrailerURLString = [basetrailerURLString stringByAppendingString:videos[0][@"key"]];
             
+                // Convert the url String to a NSURL object.
+                NSURL *trailerURL = [NSURL URLWithString:fullTrailerURLString];
+
+                // Place the URL in a URL Request.
+                NSURLRequest *request = [NSURLRequest requestWithURL:trailerURL cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
+
+                // Load Request into WebView.
+                [self.webView loadRequest:request];
+            }
+            
+            // if no videos exist
+            else {
+                // create alert element
+                UIAlertController *alert = [UIAlertController
+                                            alertControllerWithTitle:@"Not Available"
+                                            message:@"No Trailer Available"
+                                            preferredStyle:(UIAlertControllerStyleAlert)];
+                // create Go Back action button
+                UIAlertAction *goBackAlert = [UIAlertAction
+                                              actionWithTitle:@"Go Back"
+                                              style:UIAlertActionStyleCancel
+                                              handler:^(UIAlertAction * _Nonnull action) {
+                                                  [self close];
+                                              }];
+                // add the Go Back action to the alert controller
+                [alert addAction:goBackAlert];
+                
+                // show alert
+                [self presentViewController:alert animated:YES completion:^{
+                }];
+            }
+                
             // stop mid-screen loading view
             [self.loadingActivityIndicator stopAnimating];
             NSLog(@"loaded");
