@@ -40,7 +40,7 @@
     
     // Create a white border with defined width
     self.detailPosterImageView.layer.borderColor = [UIColor whiteColor].CGColor;
-    self.detailPosterImageView.layer.borderWidth = 1;
+    self.detailPosterImageView.layer.borderWidth = 1.5;
     // Set image corner radius
   //  self.detailPosterImageView.layer.cornerRadius = 5.0;
     
