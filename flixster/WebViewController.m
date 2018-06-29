@@ -17,26 +17,32 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    // animate mid-screen loading wheel
     [self.loadingActivityIndicator startAnimating];
+    
+    // get trailer
     [self fetchTrailer];
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+// linked to X button
+// when tapped, close moda, view
 - (IBAction)onTap:(id)sender {
     [self close];
 }
 
-
+// close modal view
 - (void)close {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-
+// get trailer from YouTube
 - (void)fetchTrailer {
     
     NSString *urlString = [NSString stringWithFormat:@"https://api.themoviedb.org/3/movie/%@/videos?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed", self.movie[@"id"]];
@@ -55,7 +61,7 @@
                                         message:[error localizedDescription]
                                         preferredStyle:(UIAlertControllerStyleAlert)];
 
-            // create try again action button
+            // create Try Again action button
             UIAlertAction *tryAgainAction = [UIAlertAction
                                        actionWithTitle:@"Try Again"
                                        style:UIAlertActionStyleDefault
@@ -90,8 +96,6 @@
             NSString *basetrailerURLString = @"https://www.youtube.com/embed/";
             NSString *fullTrailerURLString = [basetrailerURLString stringByAppendingString:videos[0][@"key"]];
             
-            NSLog(@"%@", fullTrailerURLString);
-            
             // Convert the url String to a NSURL object.
             NSURL *trailerURL = [NSURL URLWithString:fullTrailerURLString];
 
@@ -100,8 +104,10 @@
 
             // Load Request into WebView.
             [self.webView loadRequest:request];
+            
+            // stop mid-screen loading view
             [self.loadingActivityIndicator stopAnimating];
-           NSLog(@"loaded");
+            NSLog(@"loaded");
         }
     }];
     

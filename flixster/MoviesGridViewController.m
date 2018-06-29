@@ -27,14 +27,20 @@
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     
+    // mid-screen loading wheel
     [self.fetchingActivityIndicator startAnimating];
     
+    // get movie data to fill collection view
     [self fetchMovies];
     
+    // create pull-to-refresh wheel
     self.refreshControl = [[UIRefreshControl alloc] init];
+    // add refresh functionality to pull action
     [self.refreshControl addTarget:self action:@selector(fetchMovies) forControlEvents:UIControlEventValueChanged];
+    // place wheel in view
     [self.collectionView insertSubview:self.refreshControl atIndex:0];
     
+    // ========= adjust poster size to fill view evenly ============
     UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout;
     
     layout.minimumLineSpacing = 0;
@@ -47,7 +53,7 @@
     CGFloat itemHeight = itemWidth * 1.5;
     
     layout.itemSize = CGSizeMake(itemWidth, itemHeight);
-    
+    // =============================================================
     
 }
 
@@ -63,6 +69,8 @@
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (error != nil) {
             NSLog(@"%@", [error localizedDescription]);
+            
+            // ====== create error for failing to load data =============
             
             // create alert element
             UIAlertController *alert = [UIAlertController
@@ -83,19 +91,21 @@
             // show alert
             [self presentViewController:alert animated:YES completion:^{
             }];
+            // ======================================================
         }
         else {
             NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
             
-            // TODO: Get the array of movies
-            // TODO: Store the movies in a property to use elsewhere
-            // TODO: Reload your table view data
-            
             self.movies = dataDictionary[@"results"];
             
+            // after getting data reload collection view to update it
             [self.collectionView reloadData];
+            
+            // stop loading wheel
             [self.fetchingActivityIndicator stopAnimating];
         }
+        
+        // stop pull-to-refresh wheel
         [self.refreshControl endRefreshing];
     }];
     [task resume];
@@ -117,6 +127,7 @@
     NSURL *url = [NSURL URLWithString:fullURLString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
+    // load poster image with fade-in if is being downloaded
     __weak MovieGridCell *weakSelf = cell;
     [cell.posterImageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest *imageRequest, NSHTTPURLResponse *imageResponse, UIImage *image) {
         // imageResponse will be nil if the image is cached
@@ -135,7 +146,6 @@
             weakSelf.posterImageView.image = image;
         }
     } failure:^(NSURLRequest *request, NSHTTPURLResponse * response, NSError *error) {
-        // do something for the failure condition
     }];
     
     return cell;
