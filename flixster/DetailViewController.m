@@ -64,7 +64,7 @@
 }
 - (IBAction)onTap:(id)sender {
     NSLog(@"Tapping");
-    [self performSegueWithIdentifier:@"trailerSegue" sender:nil];
+  //  [self performSegueWithIdentifier:@"trailerSegue" sender:nil];
 }
 
 #pragma mark - Navigation
@@ -75,6 +75,5 @@
     WebViewController *webViewController = [segue destinationViewController];
     webViewController.movie = self.movie;
 }
-
 
 @end
