@@ -41,9 +41,10 @@
                                                     <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="G5n-BC-1Aa">
+                                                <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="G5n-BC-1Aa">
                                                     <rect key="frame" x="9" y="5" width="81" height="137"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <gestureRecognizers/>
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -304,6 +305,6 @@
         <image name="projector_tabbar_item" width="21" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="FdC-Xi-Wbf"/>
+        <segue reference="kbU-4c-xWI"/>
     </inferredMetricsTieBreakers>
 </document>
