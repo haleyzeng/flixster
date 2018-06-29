@@ -10,5 +10,4 @@
 
 @interface MovieGridCell : UICollectionViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *posterImageView;
-
 @end

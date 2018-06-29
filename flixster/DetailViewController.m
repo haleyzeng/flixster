@@ -25,7 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
  
-    // base for poster and backdrop photos
+    // base url string for poster and backdrop photos
     NSString *baseURLString = @"https://image.tmdb.org/t/p/w500";
     
     // =============== add backdrop photo =====================
@@ -35,6 +35,7 @@
     
     NSURLRequest *request = [NSURLRequest requestWithURL:backdropURL];
     
+    // will fade in if being downloaded
     __weak DetailViewController *weakSelf = self;
     [self.detailBackdropImageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest *imageRequest, NSHTTPURLResponse *imageResponse, UIImage *image) {
         // imageResponse will be nil if the image is cached
@@ -53,7 +54,6 @@
             weakSelf.detailBackdropImageView.image = image;
         }
     } failure:^(NSURLRequest *request, NSHTTPURLResponse * response, NSError *error) {
-        // do something for the failure condition
     }];
     // ==========================================================
     
@@ -64,6 +64,7 @@
     
     request = [NSURLRequest requestWithURL:posterURL];
     
+    // will fade in if being downloaded
     [self.detailPosterImageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest *imageRequest, NSHTTPURLResponse *imageResponse, UIImage *image) {
         // imageResponse will be nil if the image is cached
         if (imageResponse) {
@@ -81,7 +82,6 @@
             weakSelf.detailPosterImageView.image = image;
         }
     } failure:^(NSURLRequest *request, NSHTTPURLResponse * response, NSError *error) {
-        // do something for the failure condition
     }];
     // =======================================================
     

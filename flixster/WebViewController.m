@@ -44,11 +44,11 @@
 
 // get trailer from YouTube
 - (void)fetchTrailer {
-    
+    // make URL for request call
     NSString *urlString = [NSString stringWithFormat:@"https://api.themoviedb.org/3/movie/%@/videos?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed", self.movie[@"id"]];
     NSLog(@"%@", urlString);
-    
     NSURL *url = [NSURL URLWithString:urlString];
+    
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
@@ -88,11 +88,13 @@
             
         }
         else {
-            
+            // convert json data to dictionary obj
             NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+            
             
             NSArray *videos = dataDictionary[@"results"];
             
+            // build url string
             NSString *basetrailerURLString = @"https://www.youtube.com/embed/";
             NSString *fullTrailerURLString = [basetrailerURLString stringByAppendingString:videos[0][@"key"]];
             

@@ -210,7 +210,7 @@
         <scene sceneID="M12-B8-cQq">
             <objects>
                 <navigationController id="7lA-th-6SU" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Grid View" id="2w9-9s-gDw"/>
+                    <tabBarItem key="tabBarItem" title="Grid View" selectedImage="projector_tabbar_item" id="2w9-9s-gDw"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="awK-n5-nKg">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -283,7 +283,7 @@
         <scene sceneID="bYK-TI-Q9h">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DFD-Pg-dbP" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="List View" id="Etm-yQ-zsn"/>
+                    <tabBarItem key="tabBarItem" title="List View" selectedImage="now_playing_tabbar_item" id="Etm-yQ-zsn"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="pAh-lk-1S9">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -299,6 +299,10 @@
             <point key="canvasLocation" x="62" y="459"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="now_playing_tabbar_item" width="21" height="21"/>
+        <image name="projector_tabbar_item" width="21" height="25"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="FdC-Xi-Wbf"/>
     </inferredMetricsTieBreakers>
