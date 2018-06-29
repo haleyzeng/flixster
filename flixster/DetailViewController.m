@@ -8,9 +8,11 @@
 
 #import "DetailViewController.h"
 #import "UIImageView+AFNetworking.h"
+#import "WebViewController.h"
 
 @interface DetailViewController ()
 
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIImageView *detailBackdropImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *detailPosterImageView;
 @property (weak, nonatomic) IBOutlet UILabel *detailTitleLabel;
@@ -49,21 +51,30 @@
     [self.detailTitleLabel sizeToFit];
     [self.detailDescriptionLabel sizeToFit];
     
+ //   double maxHeight = self.detailDescriptionLabel.frame.origin.y + self.detailDescriptionLabel.frame.size.height;
+    
+  //  self.scrollView.frame.size = CGSizeMake(self.scrollView.frame.size.width, maxHeight);
+    
+    NSLog(@"%@", self.movie[@"id"]);
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+- (IBAction)onTap:(id)sender {
+    NSLog(@"Tapping");
+    [self performSegueWithIdentifier:@"trailerSegue" sender:nil];
+}
 
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+
+    WebViewController *webViewController = [segue destinationViewController];
+    webViewController.movie = self.movie;
 }
-*/
+
 
 @end
