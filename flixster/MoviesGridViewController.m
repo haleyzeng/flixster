@@ -11,12 +11,15 @@
 #import "UIImageView+AFNetworking.h"
 #import "DetailViewController.h"
 
-@interface MoviesGridViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
+@interface MoviesGridViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *fetchingActivityIndicator;
 @property (nonatomic, strong) NSArray *movies;
+@property (nonatomic, strong) NSArray *filteredMovies;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+
 @end
 
 @implementation MoviesGridViewController
@@ -26,6 +29,7 @@
     
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
+    self.searchBar.delegate = self;
     
     // mid-screen loading wheel
     [self.fetchingActivityIndicator startAnimating];
@@ -99,6 +103,7 @@
             NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
             
             self.movies = dataDictionary[@"results"];
+            self.filteredMovies = self.movies;
             
             // after getting data reload collection view to update it
             [self.collectionView reloadData];
@@ -116,14 +121,14 @@
 
 // specify how many cells in collection view
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.movies.count;
+    return self.filteredMovies.count;
 }
 
 // specify what goes inside each cell
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     MovieGridCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MovieGridCell" forIndexPath:indexPath];
     
-    NSDictionary *movie = self.movies[indexPath.item];
+    NSDictionary *movie = self.filteredMovies[indexPath.item];
     NSString *baseURLString = @"https://image.tmdb.org/t/p/w500";
     NSString *posterURLString = movie[@"poster_path"];
     NSString *fullURLString = [baseURLString stringByAppendingString:posterURLString];
@@ -153,6 +158,37 @@
     }];
     
     return cell;
+}
+
+// searching: filtering results based on what's typed
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    if (searchText.length != 0) {
+        NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(NSDictionary *evaluatedObject, NSDictionary *bindings) {
+            return [[evaluatedObject[@"title"] lowercaseString] containsString:[searchText lowercaseString]];
+        }];
+        self.filteredMovies = [self.movies filteredArrayUsingPredicate:predicate];
+    }
+    else {
+        self.filteredMovies = self.movies;
+    }
+    
+    [self.collectionView reloadData];
+}
+
+
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    self.searchBar.showsCancelButton = YES;
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    self.searchBar.showsCancelButton = NO; // hide cancel button
+    self.searchBar.text = @"";  // clear search text
+    [self.searchBar resignFirstResponder]; // hide keyboard
+    
+    // return view to all movies
+    self.filteredMovies = self.movies;
+    [self.collectionView reloadData];
 }
 
 #pragma mark - Navigation
