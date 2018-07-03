@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Movie.h"
 
 @interface MovieGridCell : UICollectionViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *posterImageView;
+@property (strong, nonatomic) Movie *movie;
 @end

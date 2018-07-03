@@ -20,6 +20,8 @@
 		5D9B14F720E58473009E5FBE /* MovieGridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9B14F620E58473009E5FBE /* MovieGridCell.m */; };
 		5D9B14FA20E596DB009E5FBE /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9B14F920E596DB009E5FBE /* WebViewController.m */; };
 		5D9B14FC20E598AD009E5FBE /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D9B14FB20E598AD009E5FBE /* WebKit.framework */; };
+		5DB46B1520EA9C7C0088B257 /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB46B1420EA9C7C0088B257 /* Movie.m */; };
+		5DB46B1820EAA46B0088B257 /* MovieAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB46B1720EAA46B0088B257 /* MovieAPIManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +47,10 @@
 		5D9B14F820E596DB009E5FBE /* WebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		5D9B14F920E596DB009E5FBE /* WebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		5D9B14FB20E598AD009E5FBE /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		5DB46B1320EA9C7C0088B257 /* Movie.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Movie.h; sourceTree = "<group>"; };
+		5DB46B1420EA9C7C0088B257 /* Movie.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Movie.m; sourceTree = "<group>"; };
+		5DB46B1620EAA46B0088B257 /* MovieAPIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieAPIManager.h; sourceTree = "<group>"; };
+		5DB46B1720EAA46B0088B257 /* MovieAPIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovieAPIManager.m; sourceTree = "<group>"; };
 		B5CA6B95E706F11479AEBAE2 /* Pods-flixster.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-flixster.debug.xcconfig"; path = "Pods/Target Support Files/Pods-flixster/Pods-flixster.debug.xcconfig"; sourceTree = "<group>"; };
 		D9A9201D015A71C92AF6D598 /* Pods-flixster.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-flixster.release.xcconfig"; path = "Pods/Target Support Files/Pods-flixster/Pods-flixster.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -102,6 +108,10 @@
 				5D9B14F620E58473009E5FBE /* MovieGridCell.m */,
 				5D9B14F820E596DB009E5FBE /* WebViewController.h */,
 				5D9B14F920E596DB009E5FBE /* WebViewController.m */,
+				5DB46B1320EA9C7C0088B257 /* Movie.h */,
+				5DB46B1420EA9C7C0088B257 /* Movie.m */,
+				5DB46B1620EAA46B0088B257 /* MovieAPIManager.h */,
+				5DB46B1720EAA46B0088B257 /* MovieAPIManager.m */,
 			);
 			path = flixster;
 			sourceTree = "<group>";
@@ -217,11 +227,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D9B14EE20E4633C009E5FBE /* DetailViewController.m in Sources */,
+				5DB46B1820EAA46B0088B257 /* MovieAPIManager.m in Sources */,
 				5D0BC8EF20E409F4003EDE70 /* main.m in Sources */,
 				5D0BC8E120E409F3003EDE70 /* AppDelegate.m in Sources */,
 				5D9B14FA20E596DB009E5FBE /* WebViewController.m in Sources */,
 				5D9B14F720E58473009E5FBE /* MovieGridCell.m in Sources */,
 				5D7B379720E451EC0041FCE6 /* MovieCell.m in Sources */,
+				5DB46B1520EA9C7C0088B257 /* Movie.m in Sources */,
 				5D7B379420E411A60041FCE6 /* MoviesViewController.m in Sources */,
 				5D9B14F120E57FC7009E5FBE /* MoviesGridViewController.m in Sources */,
 			);

@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Movie.h"
 
 @interface WebViewController : UIViewController
-@property (nonatomic, strong) NSDictionary *movie;
+@property (nonatomic, strong) Movie *movie;
 @end

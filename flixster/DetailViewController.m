@@ -25,17 +25,31 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
  
-    // base url string for poster and backdrop photos
-    NSString *baseURLString = @"https://image.tmdb.org/t/p/w500";
+    self.detailBackdropImageView.image = nil;
+    [self loadBackdropImage];
     
-    // =============== add backdrop photo =====================
-    NSString *backdropURLString = self.movie[@"backdrop_path"];
-    NSString *fullUBackdropRLString = [baseURLString stringByAppendingString:backdropURLString];
-    NSURL *backdropURL = [NSURL URLWithString:fullUBackdropRLString];
+    self.detailPosterImageView.image = nil;
+    [self loadPosterImage];
     
-    NSURLRequest *request = [NSURLRequest requestWithURL:backdropURL];
+    // Create a white border around movie poster
+    self.detailPosterImageView.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.detailPosterImageView.layer.borderWidth = 1.5;
+
+    // add title, release date, and synopsis
+    self.detailTitleLabel.text = self.movie.title;
+    self.detailDateLabel.text = self.movie.releaseDate;
+    self.detailDescriptionLabel.text = self.movie.synopsis;
     
-    // will fade in if being downloaded
+    // label box will resize based on length of description
+    [self.detailDescriptionLabel sizeToFit];
+    
+    // adjust scrollview size according to size needs of description
+    double maxHeight = self.detailDescriptionLabel.frame.origin.y + self.detailDescriptionLabel.frame.size.height;
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, maxHeight);
+}
+
+- (void)loadBackdropImage {
+    NSURLRequest *request = [NSURLRequest requestWithURL:self.movie.backdropURL];
     __weak DetailViewController *weakSelf = self;
     [self.detailBackdropImageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest *imageRequest, NSHTTPURLResponse *imageResponse, UIImage *image) {
         // imageResponse will be nil if the image is cached
@@ -55,15 +69,11 @@
         }
     } failure:^(NSURLRequest *request, NSHTTPURLResponse * response, NSError *error) {
     }];
-    // ==========================================================
-    
-    // ================ add poster photo ========================
-    NSString *posterURLString = self.movie[@"poster_path"];
-    NSString *fullUPosterRLString = [baseURLString stringByAppendingString:posterURLString];
-    NSURL *posterURL = [NSURL URLWithString:fullUPosterRLString];
-    
-    request = [NSURLRequest requestWithURL:posterURL];
-    
+}
+
+- (void)loadPosterImage {
+    NSURLRequest *request = [NSURLRequest requestWithURL:self.movie.posterURL];
+    __weak DetailViewController *weakSelf = self;
     // will fade in if being downloaded
     [self.detailPosterImageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest *imageRequest, NSHTTPURLResponse *imageResponse, UIImage *image) {
         // imageResponse will be nil if the image is cached
@@ -83,23 +93,6 @@
         }
     } failure:^(NSURLRequest *request, NSHTTPURLResponse * response, NSError *error) {
     }];
-    // =======================================================
-    
-    // Create a white border around movie poster
-    self.detailPosterImageView.layer.borderColor = [UIColor whiteColor].CGColor;
-    self.detailPosterImageView.layer.borderWidth = 1.5;
-
-    // add title, release date, and synopsis
-    self.detailTitleLabel.text = self.movie[@"title"];
-    self.detailDateLabel.text = self.movie[@"release_date"];
-    self.detailDescriptionLabel.text = self.movie[@"overview"];
-    
-    // label box will resize based on length of description
-    [self.detailDescriptionLabel sizeToFit];
-    
-    // adjust scrollview size according to size needs of description
-    double maxHeight = self.detailDescriptionLabel.frame.origin.y + self.detailDescriptionLabel.frame.size.height;
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, maxHeight);
 }
 
 - (void)didReceiveMemoryWarning {
